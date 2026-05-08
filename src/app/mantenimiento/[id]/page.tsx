@@ -1,32 +1,48 @@
-// src/app/mantenimiento/[id]/page.tsx
+import Image from 'next/image';
+import { notFound } from 'next/navigation';
 
-export default function DetalleMantenimiento({ params }: { params: { id: string } }) {
-  const id = params.id;
+// REQUISITO FASE 6: SEO Dinámico
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  return {
+    title: `MotoKeeper - Detalle ${id}`,
+    description: `Ficha técnica y estado de mantenimiento para la unidad ${id}`
+  };
+}
+
+export default async function DetalleMantenimiento({ params }: { params: Promise<{ id: string }> }) {
+  // En Next.js 15 hay que esperar a los params
+  const { id } = await params;
 
   return (
     <main className="min-h-screen bg-zinc-950 text-white p-8">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-4 capitalize">
+        <h1 className="text-4xl font-black mb-4 uppercase italic">
           Detalle: <span className="text-orange-500">{id}</span>
         </h1>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
-          <div className="aspect-video bg-zinc-800 rounded-lg flex items-center justify-center border border-zinc-700">
-            <p className="text-zinc-500 italic">Aquí irá la foto de tu {id} con next/image</p>
+          {/* REQUISITO FASE 6: Uso de next/image */}
+          <div className="relative aspect-video bg-zinc-800 rounded-lg overflow-hidden border border-zinc-700">
+            <Image 
+              src="/hero-moto.jpg" // Usa la foto que subiste a /public
+              alt={`Imagen de ${id}`}
+              fill
+              className="object-cover opacity-80"
+            />
           </div>
 
-          {/* Información Técnica */}
           <div className="space-y-6">
             <div className="bg-zinc-900 p-6 rounded-xl border border-zinc-800">
-              <h2 className="text-xl font-semibold mb-4 text-orange-400">Especificaciones</h2>
-              <ul className="space-y-2 text-zinc-300">
-                <li><span className="font-bold">Estado:</span> En revisión</li>
-                <li><span className="font-bold">Kilómetros:</span> 12,500 km</li>
-                <li><span className="font-bold">Materiales:</span> Filtro original, Aceite 10W40</li>
+              <h2 className="text-xl font-bold mb-4 text-orange-500 uppercase italic">Especificaciones</h2>
+              <ul className="space-y-2 text-zinc-300 font-mono text-sm">
+                <li><span className="text-zinc-500">ESTADO:</span> <span className="text-green-500">EN REVISIÓN</span></li>
+                <li><span className="text-zinc-500">KILÓMETROS:</span> 12,500 KM</li>
+                <li><span className="text-zinc-500">MATERIALES:</span> FILTRO ORIGINAL, ACEITE 10W40</li>
               </ul>
             </div>
             
-            <button className="w-full py-3 bg-zinc-100 text-black font-bold rounded-lg hover:bg-orange-500 hover:text-white transition-colors">
+            <button className="w-full py-4 bg-orange-600 text-white font-black uppercase italic hover:bg-white hover:text-black transition-all">
               Editar Registro
             </button>
           </div>

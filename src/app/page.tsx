@@ -5,7 +5,6 @@ import { ShieldCheck, Zap, Camera } from 'lucide-react';
 export default function Home() {
   return (
     <main className="bg-zinc-950 text-white">
-      {/* Hero Section con Imagen */}
       <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-40">
            {/* Aquí pondrás la foto de tu moto en la carpeta /public */}
@@ -20,7 +19,7 @@ export default function Home() {
             La plataforma definitiva para apasionados del motor que no dejan nada al azar.
           </p>
           <Link href="/mantenimiento" className="bg-orange-600 hover:bg-orange-500 text-white px-10 py-4 font-black uppercase italic transition-all rounded-sm shadow-2xl">
-            Empezar ahora
+            Ver mi Garaje
           </Link>
         </div>
       </section>
