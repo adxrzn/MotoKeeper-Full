@@ -37,8 +37,8 @@ export default function RootLayout({
             
             <div className="flex gap-6 text-sm font-bold uppercase italic">
               <Link href="/servicios" className="hover:text-orange-500">Servicios</Link>
-              <Link href="/mantenimiento" className="hover:text-orange-500">Garaje</Link>
-              <Link href="/nosotros" className="hover:text-orange-500">Sobre Nosotros</Link>
+              <Link href="/garaje" className="hover:text-orange-500">Garaje</Link>
+              <Link href="/sobrenosotros" className="hover:text-orange-500">Sobre Nosotros</Link>
               <Link href="/contacto" className="hover:text-orange-500">Contacto</Link>
             </div>
           </div>
