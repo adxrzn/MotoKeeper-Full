@@ -17,23 +17,20 @@ export default function RegisterPage() {
     setSuccess(false);
 
     try {
-      const res = await fetch(
-        `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.NEXT_PUBLIC_FIREBASE_API_KEY}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            email,
-            password,
-            returnSecureToken: true,
-          }),
-        }
-      );
+      // Conectamos directamente a tu backend de Next.js unificado en lugar de Firebase
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
 
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.error?.message || "Error al registrar el usuario");
+        throw new Error(data.message || "Error al registrar el usuario");
       }
 
       setSuccess(true);
@@ -42,13 +39,13 @@ export default function RegisterPage() {
       }, 2000);
 
     } catch (err: any) {
-      // Mensajes limpios y profesionales para el usuario
-      if (err.message === "EMAIL_EXISTS") {
+      // Control de errores profesional adaptado a las respuestas comunes de tu API / Prisma
+      if (err.message.includes("P2002") || err.message.toLowerCase().includes("exists") || err.message.toLowerCase().includes("ya existe")) {
         setError("Este correo electrónico ya está registrado.");
-      } else if (err.message.includes("WEAK_PASSWORD")) {
+      } else if (password.length < 6) {
         setError("La contraseña debe tener al menos 6 caracteres.");
       } else {
-        setError("Ocurrió un error en el registro. Inténtalo de nuevo.");
+        setError(err.message || "Ocurrió un error en el registro. Inténtalo de nuevo.");
       }
     }
   };
