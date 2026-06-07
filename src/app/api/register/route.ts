@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
-import crypto from "crypto";
+import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
@@ -19,7 +19,7 @@ export async function POST(request: Request) {
     const existingUser = await prisma.user.findUnique({
       where: { email: email.toLowerCase() },
     });
- 
+
     if (existingUser) {
       return NextResponse.json(
         { error: "El correo electrónico ya está registrado" },
@@ -27,7 +27,9 @@ export async function POST(request: Request) {
       );
     }
 
-  const hashedPassword = crypto.createHash("sha256").update(password).digest("hex");
+    // Encriptamos la contraseña con bcryptjs usando 10 rondas de sal, igual que en el repo antiguo
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     const newUser = await prisma.user.create({
       data: {
         name: name || null,
