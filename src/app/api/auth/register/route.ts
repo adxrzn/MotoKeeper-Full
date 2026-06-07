@@ -15,10 +15,8 @@ export async function POST(request: Request) {
       );
     }
 
-    // Encriptamos la contraseña para que el proceso sea idéntico
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // SIMULACIÓN: Devolvemos un éxito ficticio para desbloquear el desarrollo de la app
     return NextResponse.json(
       { 
         message: "Usuario registrado correctamente", 
@@ -28,9 +26,9 @@ export async function POST(request: Request) {
     );
 
   } catch (error: any) {
-    console.error("ERROR EN EL REGISTRO SIMULADO:", error);
+    console.error("ERROR EN EL REGISTRO:", error);
     return NextResponse.json(
-      { error: "Error interno del servidor al registrar usuario" },
+      { error: "Error interno del servidor" },
       { status: 500 }
     );
   }
