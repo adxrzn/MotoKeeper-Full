@@ -9,20 +9,18 @@ export default function NavbarContent() {
   return (
     <nav className="p-6 border-b border-zinc-800 bg-zinc-950/50 backdrop-blur-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        {/* Logo de la marca */}
         <Link href="/" className="text-xl font-black italic uppercase tracking-tighter">
           MOTO<span className="text-orange-500">KEEPER</span>
         </Link>
         
-        {/* Menú de navegación principal */}
         <div className="flex gap-6 text-sm font-bold uppercase italic ml-10">
           <Link href="/servicios" className="hover:text-orange-500 transition-colors">Servicios</Link>
           <Link href="/garaje" className="hover:text-orange-500 transition-colors">Garaje</Link>
+          <Link href="/inventario" className="hover:text-orange-500 transition-colors">Inventario</Link>
           <Link href="/sobrenosotros" className="hover:text-orange-500 transition-colors">Sobre Nosotros</Link>
           <Link href="/contacto" className="hover:text-orange-500 transition-colors">Contacto</Link>
         </div>
 
-        {/* Bloque de Autenticación Dinámico */}
         <div className="flex items-center gap-4 text-sm font-bold uppercase italic ml-auto">
           {status === "authenticated" ? (
             <div className="flex items-center gap-4">
