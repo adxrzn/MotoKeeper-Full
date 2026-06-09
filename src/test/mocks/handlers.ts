@@ -25,7 +25,7 @@ export const handlers = [
   }),
 
   http.post("/api/products", async ({ request }) => {
-    const body = await request.json() as any;
+    const body = await request.json() as Record<string, unknown>;
     
     if (!body.name || body.price === undefined) {
       return HttpResponse.json({ error: "Datos inválidos" }, { status: 400 });

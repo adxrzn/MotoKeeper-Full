@@ -41,7 +41,8 @@ export async function GET(request: Request) {
 
     return NextResponse.json(filtered);
   } catch (error) {
-    return NextResponse.json({ error: "Error al cargar productos" }, { status: 500 });
+    console.error("Error al obtener productos:", error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
 
@@ -94,7 +95,8 @@ export async function POST(request: Request) {
     mockProducts.push(newProduct);
     return NextResponse.json(newProduct, { status: 201 });
   } catch (error) {
-    return NextResponse.json({ error: "Error en el servidor" }, { status: 500 });
+    console.error("Error al crear producto:", error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
 
@@ -110,6 +112,7 @@ export async function DELETE(request: Request) {
     mockProducts = mockProducts.filter(p => p.id !== id);
     return NextResponse.json({ message: "Producto eliminado" }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ error: "Error al eliminar" }, { status: 500 });
+    console.error("Error al procesar producto:", error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }

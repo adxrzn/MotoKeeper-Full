@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { ShieldCheck, Zap, Camera } from 'lucide-react';
 
 function AppDownload() {

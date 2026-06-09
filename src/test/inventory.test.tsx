@@ -4,7 +4,7 @@ import React from "react";
 
 // Componente de prueba para testear la integración con MSW
 function TestInventoryComponent() {
-  const [products, setProducts] = React.useState<any[]>([]);
+  const [products, setProducts] = React.useState<{ id: number; name: string; price: number }[]>([]);
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {

@@ -79,8 +79,12 @@ export default function InventoryManager() {
   }, []);
 
   useEffect(() => {
-    fetchProducts();
-  }, [search, selectedCategory]);
+  const cargarDatos = async () => {
+    await fetchProducts();
+  };
+  cargarDatos();
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, [search, selectedCategory]);
 
   // Manejar apertura/cierre para limpiar estados
   const handleOpenChange = (isOpen: boolean) => {

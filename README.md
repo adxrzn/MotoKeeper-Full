@@ -1,16 +1,12 @@
-MotoKeeper-Full - Gestión Profesional de Motos
+# MotoKeeper — Full-Stack Workshop & Inventory Management Platform
 
-## 🔗 Ver el proyecto en vivo
-Puedes probar la web aquí: https://moto-keeper-full.vercel.app/
+> Plataforma profesional de gestión de inventario, mantenimiento técnico de motocicletas y control de stock en tiempo real con arquitectura moderna serverless y suite de pruebas automatizadas.
 
-## ✨ ¿Qué hace la aplicación?
-- **Mi Garaje:** Puedo añadir las motos que quiera (Marca, Modelo, Año) y borrarlas cuando quiera.
-- **Rutas Propias:** Cada moto tiene su propia página con una URL limpia (ejemplo: `/garaje/yamaha-mt07`).
-- **Historial Técnico:** Dentro de cada moto, puedes anotar cada vez que le cambias el aceite, le arreglas algo o la limpias.
-- **Fotos:** Puedes subir una foto de la reparación o de la factura para que no se te olvide nada.
+[![CI/CD Pipeline](https://img.shields.io/badge/CI--CD-GitHub%20Actions-orange?style=for-the-badge&logo=githubactions)](#)
+[![Coverage Code](https://img.shields.io/badge/Test%20Coverage-%3E80%25-green?style=for-the-badge&logo=vitest)](#)
+[![Next.js 15](https://img.shields.io/badge/Framework-Next.js%2015-black?style=for-the-badge&logo=nextdotjs)](#)
 
-## 🚀 Cómo lanzarlo
-Si te descargas el código, solo tienes que:
-1. Instalar todo: `npm install`
-2. Arrancar: `npm run dev`
-3. Ir a `http://localhost:3000` en tu navegador.
+## 🚀 Enlaces del Proyecto
+
+* **Aplicación en Producción:** [Visitar MotoKeeper en Vercel](https://moto-keeper-full.vercel.app/)
+* **Demo Técnica (Video):** [Ver Presentación de 5 minutos en Loom](ENLACE_DE_LOOM_FINAL)

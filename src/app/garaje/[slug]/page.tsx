@@ -28,11 +28,12 @@ export default function DetalleMoto({ params }: { params: Promise<{ slug: string
   });
 
   useEffect(() => {
-    setMontado(true);
-    const hoy = new Date().toISOString().split('T')[0];
-    setNuevoRegistro(prev => ({ ...prev, fecha: hoy }));
     const guardados = localStorage.getItem(`mantenimientos_${motoSlug}`);
-    if (guardados) setRegistros(JSON.parse(guardados));
+    if (guardados) {
+      setTimeout(() => {
+        setRegistros(JSON.parse(guardados));
+      }, 0);
+    }
   }, [motoSlug]);
 
   useEffect(() => {
@@ -92,7 +93,7 @@ export default function DetalleMoto({ params }: { params: Promise<{ slug: string
             <label className="block text-[10px] font-bold uppercase mb-2 text-zinc-500 italic font-mono">Evidencia Visual</label>
             <div className="relative h-48 bg-zinc-950 border border-zinc-800 flex items-center justify-center overflow-hidden group">
               {nuevoRegistro.foto ? (
-                <img src={nuevoRegistro.foto} alt="Preview" className="w-full h-full object-cover opacity-60" />
+                <img src={nuevoRegistro.foto} alt="Detalle de la moto" className="w-full h-full object-cover opacity-60" />
               ) : (
                 <span className="text-zinc-800 text-[10px] font-black uppercase italic">Click para capturar</span>
               )}

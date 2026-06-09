@@ -38,14 +38,21 @@ export default function RegisterPage() {
         router.push("/login");
       }, 2000);
 
-    } catch (err: any) {
+    } catch (err) {
+      // Forzamos a TypeScript a tratar 'err' como un objeto de tipo Error real
+      const errorActual = err instanceof Error ? err : new Error(String(err));
+      
       // Control de errores profesional adaptado a las respuestas comunes de tu API / Prisma
-      if (err.message.includes("P2002") || err.message.toLowerCase().includes("exists") || err.message.toLowerCase().includes("ya existe")) {
+      if (
+        errorActual.message.includes("P2002") || 
+        errorActual.message.toLowerCase().includes("exists") || 
+        errorActual.message.toLowerCase().includes("ya existe")
+      ) {
         setError("Este correo electrónico ya está registrado.");
       } else if (password.length < 6) {
         setError("La contraseña debe tener al menos 6 caracteres.");
       } else {
-        setError(err.message || "Ocurrió un error en el registro. Inténtalo de nuevo.");
+        setError(errorActual.message || "Ocurrió un error en el registro. Inténtalo de nuevo.");
       }
     }
   };

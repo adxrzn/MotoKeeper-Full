@@ -3,8 +3,18 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
+// Definimos la estructura exacta y profesional de una Moto en MotoKeeper
+interface Moto {
+  marca: string;
+  modelo: string;
+  año: string;
+  matricula: string;
+  slug: string;
+}
+
 export default function Garaje() {
-  const [motos, setMotos] = useState<any[]>([]);
+  // Inicializamos el estado usando la interfaz limpia que acabamos de crear
+  const [motos, setMotos] = useState<Moto[]>([]);
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [editandoIndex, setEditandoIndex] = useState<number | null>(null);
   const [nuevaMoto, setNuevaMoto] = useState({ marca: '', modelo: '', año: '', matricula: '' });
@@ -15,12 +25,16 @@ export default function Garaje() {
   };
 
   useEffect(() => {
-    const guardadas = localStorage.getItem('misMotos');
+    const guardadas = localStorage.getItem("motos");
     if (guardadas) {
       const datos = JSON.parse(guardadas);
-      setMotos(datos);
+      setTimeout(() => {
+        setMotos(datos);
+        setCargado(true);
+      }, 0);
+    } else {
+      setTimeout(() => setCargado(true), 0);
     }
-    setCargado(true);
   }, []);
 
   useEffect(() => {
@@ -51,7 +65,12 @@ export default function Garaje() {
   const prepararEdicion = (index: number, e: React.MouseEvent) => {
     e.preventDefault();
     setEditandoIndex(index);
-    setNuevaMoto(motos[index]);
+    setNuevaMoto({
+      marca: motos[index].marca,
+      modelo: motos[index].modelo,
+      año: motos[index].año || '',
+      matricula: motos[index].matricula || ''
+    });
     setMostrarFormulario(true);
   };
 
