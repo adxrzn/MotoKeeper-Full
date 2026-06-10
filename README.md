@@ -9,4 +9,4 @@
 ## 🚀 Enlaces del Proyecto
 
 * **Aplicación en Producción:** [Visitar MotoKeeper en Vercel](https://moto-keeper-full.vercel.app/)
-* **Demo Técnica (Video):** [Ver Presentación de 5 minutos en Loom](ENLACE_DE_LOOM_FINAL)
+* **Demo Técnica (Video):** [Ver Presentación de 5 minutos en Loom](https://www.loom.com/share/785855dcd63047489c9c5c5f52022cc5)
